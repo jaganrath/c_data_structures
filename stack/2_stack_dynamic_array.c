@@ -1,5 +1,4 @@
 /*
- *
  *	Stack : Program 2 : Dynamically sized Stack using Dynamic Array
  *		& user controlled menu based operations on the stack
  *
