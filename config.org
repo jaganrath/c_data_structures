@@ -1,0 +1,11 @@
+[core]
+	repositoryformatversion = 0
+	filemode = true
+	bare = false
+	logallrefupdates = true
+[remote "origin"]
+	fetch = +refs/heads/*:refs/remotes/origin/*
+	url = https://jaganrath@github.com/jaganrath/c_data_structures.git
+[branch "master"]
+	remote = origin
+	merge = refs/heads/master
