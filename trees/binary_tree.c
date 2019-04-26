@@ -1,3 +1,15 @@
+/*
+ *  Binary Search Tree
+ *
+ * Operations :
+ * a. Insert Node
+ * b. Inorder, Pre-order, Post-order
+ * c. Search key
+ * d. Delete Node
+ *
+ *
+ */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include "binary_tree.h"
@@ -40,7 +52,29 @@ insert_node(tnode **node, int data)
 }
 
 // preorder  : Root L R
+
+void
+preorder(tnode *node)
+{
+	if (node) {
+		printf(" %d ", node->data);
+		preorder(node->left);
+		preorder(node->right);
+	}
+}
+
 // postorder : L R Root
+
+void
+postorder(tnode *node)
+{
+	if (node) {
+		postorder(node->left);
+		postorder(node->right);
+		printf(" %d ", node->data);
+	}
+}
+
 // inorder   : L Root Right
 
 void
@@ -53,6 +87,22 @@ inorder(tnode *node)
 	}
 }
 
+tnode *
+search(tnode *node, int key)
+{
+	if (node) {
+		if (key < node->data)
+			return (search(node->left, key));
+		else if (key > node->data)
+			return (search(node->right, key));
+
+		printf("found : %d\n", node->data);
+
+		return (node);
+	}	
+
+	return (NULL);
+}
 
 
 int
@@ -66,8 +116,19 @@ main(void)
 	insert_node(&root, 110);
 	insert_node(&root, 190);
 		
+	preorder(root);
+	printf("\n");
+
 	inorder(root);
 	printf("\n");
+
+	postorder(root);
+	printf("\n");
+
+	search(root, 30);
+	search(root, 31);
+	search(root, 190);
+	search(root, 191);
 
 	return (0);
 }
