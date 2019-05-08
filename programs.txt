@@ -1,0 +1,14 @@
+A. Queues
+------------------
+1. Queue implementation using Arrays (enqueue, dequeue, peek)
+
+
+B. Stacks
+------------------
+1. Stack implementation using Arrays - Fixed Size (push, pop, peek)
+2. Stack implementation using Dynamic Arrays - Dynamic Size
+
+C. Trees
+------------------ 
+1. Basic Binary Search Tree (insert, inorder, preorder, postorder, search, delete)
+

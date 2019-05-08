@@ -7,7 +7,6 @@
  * c. Search key
  * d. Delete Node
  *
- *
  */
 
 #include <stdio.h>
@@ -105,6 +104,56 @@ search(tnode *node, int key)
 }
 
 
+tnode *
+get_min_value(tnode *node)
+{
+	tnode *cur = node;
+
+	while (cur && cur->left)
+		cur = cur->left;
+
+	return (cur);
+}
+
+tnode *
+delete(tnode *node, int key)
+{
+	if (!node)
+		return (node);
+
+	if (key < node->data)	
+		node->left = delete(node->left, key);
+	else if (key > node->data)
+		node->right = delete(node->right, key);
+	else {
+		// case 1 : node has no left and right
+		// case 2 : node has left only
+		// case 3 : node has right only
+		if (!node->left) {
+			tnode *tmp = node->right;
+			free(node);
+
+			return (tmp);
+		} else if (!node->right) {
+			tnode *tmp = node->left;
+			free(node);
+
+			return (tmp);
+		}
+		// case 4 : node has noth left and right
+		// get min value of right tree - inorder successor
+		tnode *min_node = get_min_value(node->right);
+
+		// copy data of inorder successor to current node
+		node->data = min_node->data;
+
+		// delete the inorder successor node
+		node->right = delete(node->right, min_node->data);
+	}
+
+	return (node);
+}
+
 int
 main(void)
 {
@@ -125,10 +174,17 @@ main(void)
 	postorder(root);
 	printf("\n");
 
+	
 	search(root, 30);
 	search(root, 31);
 	search(root, 190);
 	search(root, 191);
+	printf("\n");
+
+	
+	root = delete(root, 100);
+	inorder(root);
+	printf("\n");
 
 	return (0);
 }
